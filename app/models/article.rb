@@ -61,6 +61,20 @@ class Article < Content
 
   setting :password,                   :string, ''
 
+
+
+  def merge_with_other(other_id)
+    other = Article.find_by_id(other_id)
+    self.body += " " + other.body 
+    other.comments.each do |comment|
+      comment.id = self.id
+      self.comments << comment
+    end 
+    other.delete
+    self.save
+  end 
+      
+
   def initialize(*args)
     super
     # Yes, this is weird - PDC
