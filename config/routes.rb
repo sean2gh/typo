@@ -106,7 +106,7 @@ Rails.application.routes.draw do
   end
 
   # Admin/XController
-  %w{advanced cache categories comments content profiles feedback general pages
+  %w{advanced cache categories merge comments content profiles feedback general pages
      resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types }.each do |i|
     match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
     match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
