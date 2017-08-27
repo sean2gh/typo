@@ -10,7 +10,7 @@ end
 
 
 Given /the following users exist/ do |users_table|
-  @users_table = articles_table
+  @users_table = users_table
   users_table.hashes.each do |user|
     # each returned element will be a hash whose key is the table header.
     User.create!(user)
@@ -19,8 +19,8 @@ end
 
 When /^I am logged into the admin panel as "(.*)"$/ do |login|
   visit '/accounts/login'
-  fill_in 'user_login', :with => login
-  fill_in 'user_password', :with => login + "_pw"
+  fill_in 'user_name', :with => login
+  fill_in 'user_pass', :with => "123456" #login + "_pw"
   click_button 'Login'
   if page.respond_to? :should
     page.should have_content('Login successful')
@@ -36,6 +36,10 @@ end
 When /^I attempt to merge with "(.*)"$/ do |title|
   fill_in 'merge_with', :with => Article.find_by_title(title).id
   click_button 'Merge'
+end
+
+Then /I should see "(.*)"$/ do |str|
+  page.should hae_content(str)
 end
 
 

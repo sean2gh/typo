@@ -6,10 +6,10 @@
 	  	<h2><%= _("Login") %></h2>
 	  </div>
       <div id="flash"><%= render_the_flash %></div>
-      <div class='clearfix'>
+      <div class='clearfix' id="user_name">
         <%= text_field(:user, :login, {:class => 'login', :placeholder => _("login")})%>  
       </div>
-      <div class='clearfix'>
+      <div class='clearfix' id="user_pass">
         <%= password_field(:user, :password, {:class => 'login', :placeholder => _("password")})%>
       </div>
       <div class='clearfix'>

@@ -15,9 +15,9 @@ Background: the blog exists, articles have been added to database
     | Second Post  | User2    | The text in the second post.    | true      |
     
     And the following users exist:
-    | login     | password | email          | name        | profile_id |
-    | admin     | 1234     | admin@blog.com | Admin       | 1          |
-    | user      | 1234     | user@blog.com  | UserX       | 2          |
+    | login     | password  | email          | name        | profile_id |
+    | admin     | 12345     | admin@blog.com | Admin       | 1          |
+    | user      | 12345     | user@blog.com  | UserX       | 2          |
 
   #1. A non-admin cannot merge articles:
   Scenario: I am a non-admin so I cannot merge articles 
@@ -36,11 +36,12 @@ Background: the blog exists, articles have been added to database
 
 
   Scenario: Merged article should contain text of both articles
-    Given I am logged into the admin panel as "admin"
-    And I visit the the edit page for "A first post"
-    And I attempt to merge with "A second post"
-    And I revisit the the edit page for "A first post"
-    Then I should see "The text in the first blog post.Followed by the text in a similar blog post."
+    Given I am logged into the admin panel as "Admin"
+    And I visit the the edit page for "First post"
+    And I attempt to merge with "Second post"
+    Then I should see "You successfully merged two articles!"
+    And I revisit the the edit page for "First post"
+    Then I should see "The text in the first post. The text in the second post."
 
   # Scenario: Merged article should contain comments of both articles
   #   Given that the first article contains comments with id: 1, 2
