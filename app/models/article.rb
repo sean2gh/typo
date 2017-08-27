@@ -70,7 +70,7 @@ class Article < Content
       comment.id = self.id
       self.comments << comment
     end 
-    other.deletes
+    other.delete
     self.save
   end 
       
